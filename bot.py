@@ -1,6 +1,7 @@
 from selenium import webdriver
 import time
 import random
+
 username = 'test' #username
 password = 'password' #password
 browser = webdriver.Chrome() 
@@ -13,6 +14,7 @@ python_button.send_keys('')
 python_button = browser.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/form/div/div[3]/div')
 python_button.click()
 time.sleep(5) # Again, we are waiting for the page.
+
 def randomTweet(tag): # This function allows us to generate random tweets.
     moreHuman = ['life','we','probably'] # This is also neccesary because twitter doesn't allow us to post the same tweet that we tweeted already.
     tweetList = [f'Life is good {random.choice(moreHuman)}{tag}', f'I am happy{random.choice(moreHuman)} {tag}'}
