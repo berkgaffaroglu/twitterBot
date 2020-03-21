@@ -1,31 +1,31 @@
 from selenium import webdriver
 import time
 import random
-
-browser = webdriver.Chrome()
-browser.get('https://twitter.com/home')
-time.sleep(5)
+username = 'test' #username
+password = 'password' #password
+browser = webdriver.Chrome() 
+browser.get('https://twitter.com/home') # Browsing to the twitter.com
+time.sleep(5) # This is necessary because selenium can be really slow to detect elements so we are waiting 5 seconds.
 python_button = browser.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/form/div/div[1]/label/div/div[2]/div/input')
 python_button.send_keys('')
 python_button = browser.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/form/div/div[2]/label/div/div[2]/div/input')
 python_button.send_keys('')
 python_button = browser.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/form/div/div[3]/div')
 python_button.click()
-time.sleep(5)
-def randomTweet(tag):
-    humanWay = ['içerisi çok pis','mahkum','yasa','eşitlik','insanlık','insaf','merhamet','haftaya','aylardır','günlerdir','saatlerdir','isteyen','mantıklı','el insaf','umut','bırakın','talep görüyor','talebi karşılayın','artık daha ne bekliyorsunuz bilmiyorum']
-    tweetList = [f'{tag} hadi arkadaşlar bastıralım',f'Noldu rahat mısınız arkadaşlar mahkumumuz içerde! {random.choice(humanWay)}{tag}',f'Eşit yasa istiyoruz {random.choice(humanWay)} {tag}',f'Olması gereken bu herkes bekliyor {random.choice(humanWay)} {tag}', f'İnsanlar bıktılar  artık verinde herkes rahatlasın {random.choice(humanWay)} {tag}',f'Az kaldı arkadaşlar tweet atmaya devam {random.choice(humanWay)}! {tag}',f'Bizi sonsuza kadar görmezden gelemezler {random.choice(humanWay)} {tag}',f'Size yasa verilmediği sürece tweet atmaya devam! {random.choice(humanWay)} {tag}']
-
+time.sleep(5) # Again, we are waiting for the page.
+def randomTweet(tag): # This function allows us to generate random tweets.
+    moreHuman = ['life','we','probably'] # This is also neccesary because twitter doesn't allow us to post the same tweet that we tweeted already.
+    tweetList = [f'Life is good {random.choice(moreHuman)}{tag}', f'I am happy{random.choice(moreHuman)} {tag}'}
     return random.choice(tweetList)
-def tweet():
-    browser.get('https://twitter.com/compose/tweet')
-    time.sleep(1)
+                 
+def tweet(): # This is the actual part that we tweet.
+    browser.get('https://twitter.com/compose/tweet') # Twitter's current tweeting page.
+    time.sleep(1) # Browsing might take 1 second or less so we are waiting 1 second.
     python_button = browser.find_element_by_xpath('//*[@id="react-root"]/div/div/div[1]/div[2]/div/div/div/div[2]/div[2]/div/div[3]/div/div/div/div[1]/div/div/div/div/div[2]/div[1]/div/div/div/div/div/div/div/div/div/div[1]/div/div/div/div[2]/div')
-    python_button.send_keys(randomTweet('MeclistenEşit 5YılCezaindirimi Cezaevleri MezarOlmasın'))
+    python_button.send_keys(randomTweet('')) # This could be any tag.
     python_button = browser.find_element_by_xpath('//*[@id="react-root"]/div/div/div[1]/div[2]/div/div/div/div[2]/div[2]/div/div[3]/div/div/div/div[1]/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[4]')
     python_button.click()
-    time.sleep(3)
 
-while True:
-    tweet()
-    time.sleep(200)
+while True: # This is an infinite loop, so it will not stop tweeting.
+    tweet() # We are calling the function tweet()
+    time.sleep(200) # How long should program wait until the next tweet. This on you.
