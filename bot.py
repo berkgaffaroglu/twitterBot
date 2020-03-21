@@ -8,9 +8,9 @@ browser = webdriver.Chrome()
 browser.get('https://twitter.com/home') # Browsing to the twitter.com
 time.sleep(5) # This is necessary because selenium can be really slow to detect elements so we are waiting 5 seconds.
 python_button = browser.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/form/div/div[1]/label/div/div[2]/div/input')
-python_button.send_keys('')
+python_button.send_keys(username)
 python_button = browser.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/form/div/div[2]/label/div/div[2]/div/input')
-python_button.send_keys('')
+python_button.send_keys(password)
 python_button = browser.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/form/div/div[3]/div')
 python_button.click()
 time.sleep(5) # Again, we are waiting for the page.
